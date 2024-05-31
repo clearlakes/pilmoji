@@ -417,8 +417,12 @@ class Pilmoji:
                     ink = stroke_ink
                     stroke_width = 0
                 try:
+                    # since this part is not visible:
+                    # - add "|" in order to keep the height of the line consistent
+                    # - remove the last character in order to keep the width of the text
+                    # "no" and "do" will now have the same line height
                     _, offset = font.getmask2(
-                        nodes_line_to_print[node_id],
+                        nodes_line_to_print[node_id][:-1] + "|",
                         mode,
                         direction=direction,
                         features=features,
